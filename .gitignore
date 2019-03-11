@@ -4,5 +4,7 @@ target
 .project
 .idea
 .vscode
+.gradle
+build
 *.iml
 hs_err_*.log
