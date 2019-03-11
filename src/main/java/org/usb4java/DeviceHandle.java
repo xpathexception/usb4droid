@@ -22,7 +22,8 @@ package org.usb4java;
  * Structure representing a handle on a USB device.
  *
  * This is an opaque type for which you are only ever provided with a pointer,
- * usually originating from {@link LibUsb#open(Device, DeviceHandle)}.
+ * usually originating from {@link LibUsb#open(Device, DeviceHandle)} or
+ * {@link LibUsb#open(Context, int, DeviceHandle)}.
  *
  * A device handle is used to perform I/O and other operations. When finished
  * with a device handle, you should call {@link LibUsb#close(DeviceHandle)}.
@@ -59,7 +60,7 @@ public final class DeviceHandle
     {
         final int prime = 31;
         int result = 1;
-        result = (prime * result) + (int) (this.deviceHandlePointer ^ 
+        result = (prime * result) + (int) (this.deviceHandlePointer ^
             (this.deviceHandlePointer >>> 32));
         return result;
     }

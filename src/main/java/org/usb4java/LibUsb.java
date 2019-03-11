@@ -1039,6 +1039,31 @@ public final class LibUsb
         final DeviceHandle handle);
 
     /**
+     * Open a device using device file descriptor and obtain a device handle.
+     *
+     * A handle allows you to perform I/O on the device in question.
+     *
+     * Internally, this function adds a reference to the device and makes it
+     * available to you through {@link #getDevice(DeviceHandle)}. This reference
+     * is removed during {@link #close(DeviceHandle)}.
+     *
+     * This is a non-blocking function; no requests are sent over the bus.
+     *
+     * @param context
+     *            The context to operate on, or NULL for the default context.
+     * @param fd
+     *            The file descriptor associated with the device.
+     * @param handle
+     *            Output location for the returned device handle pointer. Only
+     *            populated when the return code is 0.
+     * @return 0 on success, {@link #ERROR_NO_MEM} on memory allocation failure,
+     *         {@link #ERROR_ACCESS} if the user has insufficient permissions,
+     *         {@link #ERROR_NO_DEVICE} if the device has been disconnected,
+     *         another error on other failure
+     */
+    public static native int openDeviceFile(final Context context, final int fd, final DeviceHandle handle);
+
+    /**
      * Convenience function for finding a device with a particular
      * idVendor/idProduct combination.
      *

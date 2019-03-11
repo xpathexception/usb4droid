@@ -8,3 +8,4 @@ target
 build
 *.iml
 hs_err_*.log
+.DS_Store
