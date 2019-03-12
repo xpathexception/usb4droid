@@ -1,6 +1,8 @@
 apply plugin: 'java'
+apply plugin: 'maven'
 
-group = 'org.usb4droid'
+group = 'com.github.xpathexception'
+
 version = '1.3.1-SNAPSHOT'
 description = 'usb4droid'
 sourceCompatibility = '1.6'
