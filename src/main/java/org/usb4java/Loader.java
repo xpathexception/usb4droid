@@ -46,7 +46,7 @@ public final class Loader
      */
     private static String getOS()
     {
-        final String os = System.getProperty("os.name").toLowerCase()
+    	String os = System.getProperty("os.name").toLowerCase()
             .replace(" ", "");
         if (os.contains("windows"))
         {
@@ -56,6 +56,12 @@ public final class Loader
         {
             return "darwin";
         }
+	    os = System.getProperty("java.vendor").toLowerCase()
+	                            .replace(" ", "");
+	    if (os.contains("android"))
+	    {
+		    return "android";
+	    }
         return os;
     }
 
@@ -104,7 +110,7 @@ public final class Loader
         {
             return ext;
         }
-        if (os.equals("linux") || os.equals("freebsd") || os.equals("sunos"))
+        if (os.equals("linux") || os.equals("freebsd") || os.equals("sunos") || os.equals("android"))
         {
             return "so";
         }
@@ -316,6 +322,12 @@ public final class Loader
         final String platform = getPlatform();
         final String lib = getLibName();
         final String extraLib = getExtraLibName();
+        if(platform.contains("android"))
+        {
+	        System.loadLibrary("usb1.0");
+	        System.loadLibrary("usb4java");
+	        return;
+        }
         if (extraLib != null)
         {
             System.load(extractLibrary(platform, extraLib));
